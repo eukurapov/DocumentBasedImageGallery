@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4418C47424F41FE300945650 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4418C47324F41FE300945650 /* Extensions.swift */; };
 		444DA40824E6B1C900E226F6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DA40724E6B1C900E226F6 /* AppDelegate.swift */; };
 		444DA40A24E6B1C900E226F6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444DA40924E6B1C900E226F6 /* SceneDelegate.swift */; };
 		444DA40F24E6B1C900E226F6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 444DA40D24E6B1C900E226F6 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4418C47324F41FE300945650 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		444DA40424E6B1C900E226F6 /* ImageGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		444DA40724E6B1C900E226F6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		444DA40924E6B1C900E226F6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		4488828A24EBDE7E003003AB /* Supportive Files */ = {
 			isa = PBXGroup;
 			children = (
+				4418C47324F41FE300945650 /* Extensions.swift */,
 				4488828E24EC3DEA003003AB /* Utilities.swift */,
 				444DA40724E6B1C900E226F6 /* AppDelegate.swift */,
 				444DA40924E6B1C900E226F6 /* SceneDelegate.swift */,
@@ -200,6 +203,7 @@
 				44F0B42424ED9A5300C0C8C0 /* FullImageViewController.swift in Sources */,
 				4488828D24EBDF14003003AB /* IGGallery.swift in Sources */,
 				4487DC9524F3D5EC0061F3E5 /* ImageGalleryDocumentBrowserViewController.swift in Sources */,
+				4418C47424F41FE300945650 /* Extensions.swift in Sources */,
 				44DB617524E6D5C6006B8814 /* ImageCollectionViewCell.swift in Sources */,
 				4488828924EBDE65003003AB /* IGImage.swift in Sources */,
 				44F62D8D24F3D01500C786A3 /* IGDocument.swift in Sources */,

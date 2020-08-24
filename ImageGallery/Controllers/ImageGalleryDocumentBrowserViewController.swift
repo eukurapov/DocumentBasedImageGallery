@@ -32,7 +32,7 @@ class ImageGalleryDocumentBrowserViewController: UIDocumentBrowserViewController
     func presentDocument(at url: URL) {
         let story = UIStoryboard(name: "Main", bundle: nil)
         if let navigationVC = story.instantiateViewController(withIdentifier: "Navigation") as? UINavigationController,
-            let imageGalleryCVC = navigationVC.visibleViewController as? ImageGalleryCollectionViewController {
+            let imageGalleryCVC = navigationVC.contents as? ImageGalleryCollectionViewController {
             imageGalleryCVC.document = IGDocument(fileURL: url)
             present(navigationVC, animated: true)
         }
@@ -51,7 +51,7 @@ class ImageGalleryDocumentBrowserViewController: UIDocumentBrowserViewController
     }
     
     func documentBrowser(_ controller: UIDocumentBrowserViewController, didImportDocumentAt sourceURL: URL, toDestinationURL destinationURL: URL) {
-        presentDocument(at: sourceURL)
+        presentDocument(at: destinationURL)
     }
     
     // MARK: - Constant Values
