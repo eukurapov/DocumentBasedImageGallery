@@ -25,6 +25,8 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
         let dropInteraction = UIDropInteraction(delegate: self)
         trashView.addInteraction(dropInteraction)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: trashView)
+        
+        collectionView.dragInteractionEnabled = true
     }
     
     override func viewWillLayoutSubviews() {

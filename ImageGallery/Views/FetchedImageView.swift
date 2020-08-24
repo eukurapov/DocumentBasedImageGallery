@@ -28,12 +28,10 @@ class FetchedImageView: UIImageView {
         if let urlToFetch = self.url {
             let request = URLRequest(url: urlToFetch, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 30)
             self.activityIndicator?.startAnimating()
-            print("started for \(urlToFetch.absoluteString)")
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 DispatchQueue.main.async {
                     if urlToFetch == self.url {
                         self.activityIndicator?.stopAnimating()
-                        print("stopped for \(urlToFetch.absoluteString)")
                         if error == nil, data != nil, let fetchedImage = UIImage(data: data!) {
                             self.image = fetchedImage
                         }  else {
