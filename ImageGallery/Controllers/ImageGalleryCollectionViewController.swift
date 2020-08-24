@@ -38,6 +38,16 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
         super.viewWillAppear(animated)
         splitViewController?.presentsWithGesture = true
         navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
+        
+        document?.open { _ in
+            self.title = self.document?.localizedName
+            self.collectionView.reloadData()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.document?.close()
     }
     
     // MARK: - Gesture
@@ -54,10 +64,13 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
     
     // MARK: - Model
     
-    var gallery = IGGallery(name: "Unnamed") {
-        didSet {
-            title = gallery.name
-            collectionView.reloadData()
+    var document: IGDocument?
+    
+    private var gallery: IGGallery { document?.gallery ?? IGGallery() }
+    
+    func documentChanged() {
+        if document?.gallery != nil {
+            document?.updateChangeCount(.done)
         }
     }
 
@@ -144,7 +157,9 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
                         gallery.images.insert(image, at: destinationIndexPath.item)
                         collectionView.deleteItems(at: [sourceIndexPath])
                         collectionView.insertItems(at: [destinationIndexPath])
-                    })
+                    }) { _ in
+                        self.documentChanged()
+                    }
                     coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
                 }
             } else {
@@ -163,6 +178,7 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
                             let placeholderContext = coordinator.drop(item.dragItem, to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath, reuseIdentifier: self.placeholderReuseIdentifier))
                             placeholderContext.commitInsertion { indexPath in
                                 self.gallery.images.insert(image, at: indexPath.item)
+                                self.documentChanged()
                             }
                         }
                     }
@@ -212,7 +228,9 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
                     gallery.images.remove(at: indexPath.item)
                 }
                 collectionView.deleteItems(at: itemsToRemove)
-            })
+            }) { _ in
+                self.documentChanged()
+            }
         }
     }
     
