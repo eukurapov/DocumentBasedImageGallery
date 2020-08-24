@@ -26,7 +26,8 @@ class FetchedImageView: UIImageView {
         self.addSubview(activityIndicator!)
         if let urlToFetch = self.url {
             activityIndicator?.startAnimating()
-            URLSession.shared.dataTask(with: urlToFetch) { (data, response, error) in
+            let request = URLRequest(url: urlToFetch, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 30)
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
                 DispatchQueue.main.async {
                     if urlToFetch == self.url {
                         self.activityIndicator?.stopAnimating()
@@ -58,4 +59,13 @@ extension UIImage {
         }
     }
     
+}
+
+extension URLCache {
+    static func configSharedCache(directory: String? = Bundle.main.bundleIdentifier, memory: Int = 0, disk: Int = 0) {
+        URLCache.shared = {
+            let cacheDirectory = (NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] as String).appendingFormat("/\(directory ?? "cache")/" )
+            return URLCache(memoryCapacity: memory, diskCapacity: disk, diskPath: cacheDirectory)
+        }()
+    }
 }
