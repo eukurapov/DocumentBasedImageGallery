@@ -46,6 +46,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        // Ensure the URL is a file URL
+        guard url.isFileURL else { return }
+        
+        // Reveal / import the document at the URL
+        guard let documentBrowserViewController = window?.rootViewController as? ImageGalleryDocumentBrowserViewController else { return }
+
+        documentBrowserViewController.revealDocument(at: url, importIfNeeded: true) { (revealedDocumentURL, error) in
+            if let error = error {
+                // Handle the error appropriately
+                print("Failed to reveal the document at URL \(url) with error: '\(error)'")
+                return
+            }
+            
+            // Present the Document View Controller for the revealed URL
+            documentBrowserViewController.presentDocument(at: revealedDocumentURL!)
+        }
+    }
 
 
 }
