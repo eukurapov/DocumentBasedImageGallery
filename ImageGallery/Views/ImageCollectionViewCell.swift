@@ -18,6 +18,5 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var imageView: FetchedImageView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
 }

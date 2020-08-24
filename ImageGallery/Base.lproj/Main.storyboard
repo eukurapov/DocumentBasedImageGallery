@@ -33,23 +33,16 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4YB-XK-INv" customClass="FetchedImageView" customModule="ImageGallery" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                         </imageView>
-                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="KNn-Ri-lAD">
-                                            <rect key="frame" x="90" y="90" width="20" height="20"/>
-                                            <color key="color" name="AccentColor"/>
-                                        </activityIndicatorView>
                                     </subviews>
                                 </view>
                                 <constraints>
                                     <constraint firstItem="4YB-XK-INv" firstAttribute="top" secondItem="oqD-dY-c6A" secondAttribute="top" id="4qA-vo-0JP"/>
-                                    <constraint firstItem="KNn-Ri-lAD" firstAttribute="centerX" secondItem="oqD-dY-c6A" secondAttribute="centerX" id="BPP-NL-1kc"/>
                                     <constraint firstAttribute="bottom" secondItem="4YB-XK-INv" secondAttribute="bottom" id="did-JR-PRd"/>
-                                    <constraint firstItem="KNn-Ri-lAD" firstAttribute="centerY" secondItem="oqD-dY-c6A" secondAttribute="centerY" id="jEY-eG-pHc"/>
                                     <constraint firstItem="4YB-XK-INv" firstAttribute="leading" secondItem="oqD-dY-c6A" secondAttribute="leading" id="ltX-Zm-iQ0"/>
                                     <constraint firstAttribute="trailing" secondItem="4YB-XK-INv" secondAttribute="trailing" id="rKq-65-70i"/>
                                 </constraints>
                                 <size key="customSize" width="200" height="200"/>
                                 <connections>
-                                    <outlet property="activityIndicator" destination="KNn-Ri-lAD" id="4lE-vT-D8h"/>
                                     <outlet property="imageView" destination="4YB-XK-INv" id="sSP-d6-D0D"/>
                                     <segue destination="7Yl-az-C1Q" kind="show" identifier="ShowImage" id="5b5-Gu-v0R"/>
                                 </connections>
