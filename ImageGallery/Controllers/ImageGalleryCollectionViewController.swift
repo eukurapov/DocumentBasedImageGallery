@@ -72,6 +72,9 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
     
     func documentChanged() {
         if document?.gallery != nil {
+            if let snapshot = self.snapshot {
+                document?.thumbnail = snapshot
+            }
             document?.updateChangeCount(.done)
         }
     }
@@ -242,4 +245,3 @@ class ImageGalleryCollectionViewController: UICollectionViewController, UICollec
     private let placeholderReuseIdentifier = "PlaceholderCell"
     
 }
-
