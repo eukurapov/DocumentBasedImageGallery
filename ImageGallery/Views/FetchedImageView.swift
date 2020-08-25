@@ -11,7 +11,7 @@ class FetchedImageView: UIImageView {
     
     var url: URL? {
         didSet {
-            if window != nil && url != oldValue && activityIndicator?.isAnimating ?? false {
+            if window != nil, url != nil && url != oldValue && activityIndicator?.isAnimating ?? false {
                 fetchImage()
             }
         }
@@ -19,11 +19,19 @@ class FetchedImageView: UIImageView {
     var completionHandler: (() -> Void)?
     private var activityIndicator: UIActivityIndicatorView?
     
+    override var bounds: CGRect {
+        didSet {
+            activityIndicator?.center = CGPoint(x: bounds.midX, y: bounds.midY)
+        }
+    }
+    
     func fetchImage() {
         self.image = nil
         activityIndicator = UIActivityIndicatorView(frame: frame)
         activityIndicator?.hidesWhenStopped = true
-        activityIndicator!.center = self.superview?.center ?? self.center
+        activityIndicator?.center = CGPoint(
+            x: (superview?.bounds.width ?? bounds.width) / 2,
+            y: (superview?.bounds.height ?? bounds.height) / 2)
         self.addSubview(activityIndicator!)
         if let urlToFetch = self.url {
             let request = URLRequest(url: urlToFetch, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 30)

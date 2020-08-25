@@ -10,19 +10,7 @@ import UIKit
 class FullImageViewController: UIViewController, UIScrollViewDelegate {
     
     
-    @IBOutlet private weak var scrollView: UIScrollView! {
-        didSet {
-            scrollView.minimumZoomScale = 0.75
-            scrollView.maximumZoomScale = 2.0
-            scrollView.delegate = self
-            scrollView.addSubview(imageView)
-            imageView.completionHandler = { [weak self] in
-                self?.imageView.sizeToFit()
-                self?.scrollView?.contentSize = self!.imageView.frame.size
-            }
-            imageView.fetchImage()
-        }
-    }
+    @IBOutlet private weak var scrollView: UIScrollView!
     
     var url: URL? {
         get {
@@ -38,6 +26,20 @@ class FullImageViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         splitViewController?.presentsWithGesture = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        scrollView.minimumZoomScale = 0.75
+        scrollView.maximumZoomScale = 2.0
+        scrollView.delegate = self
+        scrollView.addSubview(imageView)
+        imageView.completionHandler = { [weak self] in
+            self?.imageView.sizeToFit()
+            self?.scrollView?.contentSize = self!.imageView.frame.size
+        }
+        imageView.fetchImage()
     }
     
     // MARK: - UIScrollViewDelegate

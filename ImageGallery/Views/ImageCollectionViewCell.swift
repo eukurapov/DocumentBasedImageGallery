@@ -13,7 +13,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
         get { imageView.url }
         set {
             imageView.url = newValue
-            imageView.fetchImage()
+            if newValue != nil {
+                imageView.fetchImage()
+            }
         }
     }
     
